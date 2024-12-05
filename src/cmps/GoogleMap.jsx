@@ -17,7 +17,7 @@ export function GoogleMap() {
     return (
         <div style={{ margin: '50px', height: '80vh', width: '100%' }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyA7e28W2A7JNdFaP53-OZ5_6ONhRq5rsq0" }}
+                bootstrapURLKeys={{ key: "AIzaSyDV9fjU-Mk0sA3qkQ9z_9o9k2tKoVj6WE4" }}
                 center={coordinates}
                 defaultZoom={zoom}
                 onClick={onMapClick}
