@@ -39,8 +39,8 @@ function query(filterBy = {}) {
         const regExp = new RegExp(filterBy.txt, 'i')
         filteredtoys = filteredtoys.filter((toy) => regExp.test(toy.title))
       }
-      if (filterBy.minSeverity) {
-        filteredtoys = filteredtoys.filter((toy) => toy.severity >= filterBy.minSeverity)
+      if (filterBy.minprice) {
+        filteredtoys = filteredtoys.filter((toy) => toy.price >= filterBy.minprice)
       }
       return filteredtoys
     })
@@ -93,7 +93,7 @@ function save(toy) {
 }
 
 function getDefaultFilter() {
-  return { txt: '', minSeverity: 0 }
+  return { txt: '', minprice: 0 }
 }
 
 function downloadPdf() {

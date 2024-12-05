@@ -4,7 +4,7 @@ export function ToyPreview({ toy }) {
       <h4>{toy.title}</h4>
       <h1>🤖</h1>
       <p>
-        Severity: <span>{toy.severity}</span>
+        Price: <span>{toy.price}</span>
       </p>
     </article>
   )

@@ -44,8 +44,8 @@ export function UserProfile() {
     }
 
     function onEdittoy(toy) {
-        const severity = +prompt('New severity?')
-        const toyToSave = { ...toy, severity }
+        const price = +prompt('New price?')
+        const toyToSave = { ...toy, price }
         toyService
             .save(toyToSave)
             .then(savedtoy => {

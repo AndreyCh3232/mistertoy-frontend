@@ -25,10 +25,10 @@ export function ToyDetails() {
   return (
     toy && (
       <div>
-        <h3>toy Details 🐛</h3>
+        <h3>toy Details 🤖</h3>
         <h4>{toy.title}</h4>
         <p>
-          Severity: <span>{toy.severity}</span>
+          Price: <span>{toy.price}</span>
         </p>
         <p>
           description: <span>{toy.description}</span>

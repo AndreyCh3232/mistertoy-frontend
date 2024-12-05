@@ -44,7 +44,7 @@ export function ToyIndex() {
   function onAddtoy() {
     const toy = {
       title: prompt('toy title?'),
-      severity: +prompt('toy severity?'),
+      price: +prompt('toy price?'),
     }
     toyService
       .save(toy)
@@ -59,9 +59,9 @@ export function ToyIndex() {
   }
 
   function onEdittoy(toy) {
-    const severity = +prompt('New severity?', toy._id ? toy.severity : '')
+    const price = +prompt('New price?', toy._id ? toy.price : '')
     const description = prompt('Edit Desctiption', toy._id ? toy.description : '')
-    const toyToSave = { ...toy, severity, description }
+    const toyToSave = { ...toy, price, description }
     toyService
       .save(toyToSave)
       .then((savedtoy) => {
