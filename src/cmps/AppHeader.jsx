@@ -28,13 +28,14 @@ export function AppHeader() {
                 {user && (
                     <div className="nav-bar-container flex space-between">
                         <nav className="nav-bar">
-                            <NavLink to="/toy">toys</NavLink>
+                            <NavLink to="/toy">Toys</NavLink>
                             {user && <NavLink to="/user">Profile</NavLink>}
                             {user && user.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+                            <NavLink to="/map">Google Maps</NavLink>
                             <NavLink to="/about">About</NavLink>
                         </nav>
                         <div>
-                            <p>Hello {user.fullname}</p>
+                            <p>Hello, {user.fullname}</p>
                             <button className="btn" onClick={handleLogout}>
                                 Logout
                             </button>

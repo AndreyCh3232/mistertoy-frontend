@@ -66,7 +66,7 @@ export function UserProfile() {
     if (!user) return null
     return (
         <section className="user-profile main-layout">
-            <h1>Hello {user.fullname}</h1>
+            <h1>Hello, {user.fullname}</h1>
 
             {!toys || (!toys.length && <h2>No toys to show</h2>)}
             {toys && toys.length > 0 && <h3>Manage your toys</h3>}

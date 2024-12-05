@@ -6,6 +6,7 @@ import { AppFooter } from './cmps/AppFooter.jsx'
 import { Home } from './pages/Home.jsx'
 import { ToyIndex } from './pages/toyIndex.jsx'
 import { ToyDetails } from './pages/toyDetails.jsx'
+import { GoogleMap } from './cmps/GoogleMap.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
 import { AdminDashboard } from './pages/AdminDashboard.jsx'
@@ -21,6 +22,7 @@ export function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/toy" element={<ToyIndex />} />
                         <Route path="/toy/:toyId" element={<ToyDetails />} />
+                        <Route path="/map" element={<GoogleMap />} />
                         <Route path="/about" element={<AboutUs />} />
                         <Route path="/user" element={<UserProfile />} />
                         <Route path="/admin" element={<AdminDashboard />} />
