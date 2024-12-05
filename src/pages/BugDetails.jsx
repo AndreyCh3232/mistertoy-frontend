@@ -2,39 +2,39 @@
 // const { Link, useParams } = ReactRouterDOM
 
 import { useEffect, useState } from 'react'
-import { bugService } from '../services/bug.service.js'
+import { toyService } from '../services/toy.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Link, useParams } from 'react-router-dom'
 
-export function BugDetails() {
-  const [bug, setBug] = useState(null)
-  const { bugId } = useParams()
+export function toyDetails() {
+  const [toy, settoy] = useState(null)
+  const { toyId } = useParams()
 
   useEffect(() => {
-    bugService
-      .getById(bugId)
-      .then((bug) => {
-        setBug(bug)
+    toyService
+      .getById(toyId)
+      .then((toy) => {
+        settoy(toy)
       })
       .catch((err) => {
-        showErrorMsg('Cannot load bug')
+        showErrorMsg('Cannot load toy')
       })
   }, [])
 
-  if (!bug) return <h1>loadings....</h1>
+  if (!toy) return <h1>loadings....</h1>
   return (
-    bug && (
+    toy && (
       <div>
-        <h3>Bug Details 🐛</h3>
-        <h4>{bug.title}</h4>
+        <h3>toy Details 🐛</h3>
+        <h4>{toy.title}</h4>
         <p>
-          Severity: <span>{bug.severity}</span>
+          Severity: <span>{toy.severity}</span>
         </p>
         <p>
-          description: <span>{bug.description}</span>
+          description: <span>{toy.description}</span>
         </p>
 
-        <Link to="/bug">Back to List</Link>
+        <Link to="/toy">Back to List</Link>
       </div>
     )
   )

@@ -1,8 +1,8 @@
 // const { useState, useRef, useEffect } = React
 // const { useNavigate } = ReactRouterDOM
 
-import { BugList } from '../cmps/BugList.jsx'
-import { bugService } from '../services/bug.service.js'
+import { toyList } from '../cmps/toyList.jsx'
+import { toyService } from '../services/toy.service.js'
 import { userService } from '../services/user.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useEffect, useRef, useState } from 'react'
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 export function UserProfile() {
     const [user, setUser] = useState(userService.getLoggedinUser())
-    const [bugs, setBugs] = useState([])
+    const [toys, settoys] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -18,48 +18,48 @@ export function UserProfile() {
             navigate('/')
             return
         }
-        loadUserBugs()
+        loadUsertoys()
     }, [user])
 
-    function loadUserBugs() {
-        bugService.query({ userId: user._id }).then(res => {
+    function loadUsertoys() {
+        toyService.query({ userId: user._id }).then(res => {
             console.log('res:', res)
 
-            setBugs(res.bugs)
+            settoys(res.toys)
         })
     }
 
-    function onRemoveBug(bugId) {
-        bugService
-            .remove(bugId)
+    function onRemovetoy(toyId) {
+        toyService
+            .remove(toyId)
             .then(() => {
                 console.log('Deleted Succesfully!')
-                setBugs(prevBugs => prevBugs.filter(bug => bug._id !== bugId))
-                showSuccessMsg('Bug removed')
+                settoys(prevtoys => prevtoys.filter(toy => toy._id !== toyId))
+                showSuccessMsg('toy removed')
             })
             .catch(err => {
-                console.log('from remove bug', err)
-                showErrorMsg('Cannot remove bug')
+                console.log('from remove toy', err)
+                showErrorMsg('Cannot remove toy')
             })
     }
 
-    function onEditBug(bug) {
+    function onEdittoy(toy) {
         const severity = +prompt('New severity?')
-        const bugToSave = { ...bug, severity }
-        bugService
-            .save(bugToSave)
-            .then(savedBug => {
-                console.log('Updated Bug:', savedBug)
-                setBugs(prevBugs =>
-                    prevBugs.map(currBug =>
-                        currBug._id === savedBug._id ? savedBug : currBug
+        const toyToSave = { ...toy, severity }
+        toyService
+            .save(toyToSave)
+            .then(savedtoy => {
+                console.log('Updated toy:', savedtoy)
+                settoys(prevtoys =>
+                    prevtoys.map(currtoy =>
+                        currtoy._id === savedtoy._id ? savedtoy : currtoy
                     )
                 )
-                showSuccessMsg('Bug updated')
+                showSuccessMsg('toy updated')
             })
             .catch(err => {
-                console.log('from edit bug', err)
-                showErrorMsg('Cannot update bug')
+                console.log('from edit toy', err)
+                showErrorMsg('Cannot update toy')
             })
     }
 
@@ -68,9 +68,9 @@ export function UserProfile() {
         <section className="user-profile main-layout">
             <h1>Hello {user.fullname}</h1>
 
-            {!bugs || (!bugs.length && <h2>No bugs to show</h2>)}
-            {bugs && bugs.length > 0 && <h3>Manage your bugs</h3>}
-            <BugList bugs={bugs} onRemoveBug={onRemoveBug} onEditBug={onEditBug} />
+            {!toys || (!toys.length && <h2>No toys to show</h2>)}
+            {toys && toys.length > 0 && <h3>Manage your toys</h3>}
+            <toyList toys={toys} onRemovetoy={onRemovetoy} onEdittoy={onEdittoy} />
         </section>
     )
 }

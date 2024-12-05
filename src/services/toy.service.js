@@ -1,6 +1,6 @@
 import { httpService } from './http.service.js'
 
-export const bugService = {
+export const toyService = {
   query,
   save,
   remove,
@@ -10,55 +10,55 @@ export const bugService = {
   downloadPdf
 }
 
-const BASE_URL = 'bug/'
+const BASE_URL = 'toy/'
 
 function query(filterBy = {}) {
   return httpService
     .get(BASE_URL)
-    .then((bugs) => {
-      let filteredBugs = bugs
+    .then((toys) => {
+      let filteredtoys = toys
       if (filterBy.txt) {
         const regExp = new RegExp(filterBy.txt, 'i')
-        filteredBugs = filteredBugs.filter((bug) => regExp.test(bug.title))
+        filteredtoys = filteredtoys.filter((toy) => regExp.test(toy.title))
       }
       if (filterBy.minSeverity) {
-        filteredBugs = filteredBugs.filter((bug) => bug.severity >= filterBy.minSeverity)
+        filteredtoys = filteredtoys.filter((toy) => toy.severity >= filterBy.minSeverity)
       }
-      return filteredBugs
+      return filteredtoys
     })
 }
 
-function getById(bugId) {
+function getById(toyId) {
   return httpService
-    .get(`${BASE_URL}${bugId}`)
+    .get(`${BASE_URL}${toyId}`)
     .catch((err) => {
-      console.error(`Error getting bug with ID ${bugId}:`, err)
+      console.error(`Error getting toy with ID ${toyId}:`, err)
       throw err
     })
 }
 
-function remove(bugId) {
+function remove(toyId) {
   return httpService
-    .delete(`${BASE_URL}${bugId}`)
+    .delete(`${BASE_URL}${toyId}`)
     .catch((err) => {
-      console.error(`Error removing bug with ID ${bugId}:`, err)
+      console.error(`Error removing toy with ID ${toyId}:`, err)
       throw err
     })
 }
 
-function save(bug) {
-  if (bug._id) {
+function save(toy) {
+  if (toy._id) {
     return httpService
-      .put(`${BASE_URL}${bug._id}`, bug)
+      .put(`${BASE_URL}${toy._id}`, toy)
       .catch((err) => {
-        console.error('Error updating bug:', err)
+        console.error('Error updating toy:', err)
         throw err;
       })
   } else {
     return httpService
-      .post(BASE_URL, bug)
+      .post(BASE_URL, toy)
       .catch((err) => {
-        console.error('Error adding new bug:', err)
+        console.error('Error adding new toy:', err)
         throw err
       })
   }
@@ -70,7 +70,7 @@ function getDefaultFilter() {
 
 function downloadPdf() {
   httpService({
-    url: '/api/bug/pdf',
+    url: '/api/toy/pdf',
     method: 'GET',
     responseType: 'blob'
   })
@@ -79,7 +79,7 @@ function downloadPdf() {
 
       const link = document.createElement('a')
       link.href = url
-      link.setAttribute('download', 'bugs.pdf')
+      link.setAttribute('download', 'toys.pdf')
       document.body.appendChild(link)
       link.click()
 

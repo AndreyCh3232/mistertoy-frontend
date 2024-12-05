@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-export function BugFilter({ filterBy, onSetFilterBy }) {
+export function ToyFilter({ filterBy, onSetFilterBy }) {
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
   useEffect(() => {
@@ -33,8 +33,8 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
   return (
     <fieldset>
       <legend>Filter</legend>
-      <form className="bug-filter" onSubmit={onSubmit}>
-        <input onChange={handleChange} name="txt" id="txt" value={filterBy.txt || ''} type="text" placeholder="Search bugs..." />
+      <form className="toy-filter" onSubmit={onSubmit}>
+        <input onChange={handleChange} name="txt" id="txt" value={filterBy.txt || ''} type="text" placeholder="Search toys..." />
         <label htmlFor="minSeverity">By severity</label>
         <input onChange={handleChange} name="minSeverity" value={filterBy.minSeverity || 0} type="range" min="0" max="10" id="minSeverity" />
         <label htmlFor="minSeverity">{filterBy.minSeverity}</label>

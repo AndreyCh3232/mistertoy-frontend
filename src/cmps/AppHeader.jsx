@@ -28,7 +28,7 @@ export function AppHeader() {
                 {user && (
                     <div className="nav-bar-container flex space-between">
                         <nav className="nav-bar">
-                            <NavLink to="/bug">Bugs</NavLink>
+                            <NavLink to="/toy">toys</NavLink>
                             {user && <NavLink to="/user">Profile</NavLink>}
                             {user && user.isAdmin && <NavLink to="/admin">Admin</NavLink>}
                             <NavLink to="/about">About</NavLink>
