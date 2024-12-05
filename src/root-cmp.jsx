@@ -4,8 +4,8 @@
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { Home } from './pages/Home.jsx'
-import { toyIndex } from './pages/toyIndex.jsx'
-import { toyDetails } from './pages/toyDetails.jsx'
+import { ToyIndex } from './pages/toyIndex.jsx'
+import { ToyDetails } from './pages/toyDetails.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
 import { AdminDashboard } from './pages/AdminDashboard.jsx'
@@ -19,8 +19,8 @@ export function App() {
                 <main className='container'>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/toy" element={<toyIndex />} />
-                        <Route path="/toy/:toyId" element={<toyDetails />} />
+                        <Route path="/toy" element={<ToyIndex />} />
+                        <Route path="/toy/:toyId" element={<ToyDetails />} />
                         <Route path="/about" element={<AboutUs />} />
                         <Route path="/user" element={<UserProfile />} />
                         <Route path="/admin" element={<AdminDashboard />} />

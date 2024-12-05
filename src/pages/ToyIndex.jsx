@@ -1,12 +1,12 @@
 import { toyService } from '../services/toy.service.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { toyList } from '../cmps/toyList.jsx'
-import { toyFilter } from '../cmps/toyFilter.jsx'
+import { ToyList } from '../cmps/ToyList.jsx'
+import { ToyFilter } from '../cmps/toyFilter.jsx'
 import { useEffect, useState } from 'react'
 
 // const { useState, useEffect } = React
 
-export function toyIndex() {
+export function ToyIndex() {
   const [toys, settoys] = useState(null)
   const [filterBy, setFilterBy] = useState(toyService.getDefaultFilter())
   const [sortBy, setSortBy] = useState('title')
@@ -108,7 +108,7 @@ export function toyIndex() {
     <main>
       <section className="info-actions">
         <h3>toys App</h3>
-        <toyFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+        <ToyFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
         <label>
           Sort by:
           <select value={sortBy} onChange={onSortChange}>
@@ -121,7 +121,7 @@ export function toyIndex() {
         <button onClick={onDownloadPdf}>Download PDF</button>
       </section>
       <main>
-        <toyList toys={toys} onRemovetoy={onRemovetoy} onEdittoy={onEdittoy} />
+        <ToyList toys={toys} onRemovetoy={onRemovetoy} onEdittoy={onEdittoy} />
         <div className="pagination">
           <button onClick={onPrevPage} disabled={pageIdx === 0}>
             Previous

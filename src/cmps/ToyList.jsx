@@ -13,7 +13,7 @@ export function ToyList({ toys, onRemovetoy, onEdittoy }) {
         <ul className="toy-list">
             {validtoys.map((toy) => (
                 <li className="toy-preview" key={toy._id}>
-                    <toyPreview toy={toy} />
+                    <ToyPreview toy={toy} />
                     <div>
                         <button onClick={() => onRemovetoy(toy._id)}>Delete</button>
                         <button onClick={() => onEdittoy(toy)}>Edit</button>

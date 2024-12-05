@@ -6,7 +6,7 @@ import { toyService } from '../services/toy.service.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Link, useParams } from 'react-router-dom'
 
-export function toyDetails() {
+export function ToyDetails() {
   const [toy, settoy] = useState(null)
   const { toyId } = useParams()
 

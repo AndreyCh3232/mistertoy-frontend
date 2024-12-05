@@ -1,7 +1,7 @@
 // const { useState, useRef, useEffect } = React
 // const { useNavigate } = ReactRouterDOM
 
-import { toyList } from '../cmps/toyList.jsx'
+import { ToyList } from '../cmps/ToyList.jsx'
 import { toyService } from '../services/toy.service.js'
 import { userService } from '../services/user.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
@@ -70,7 +70,7 @@ export function UserProfile() {
 
             {!toys || (!toys.length && <h2>No toys to show</h2>)}
             {toys && toys.length > 0 && <h3>Manage your toys</h3>}
-            <toyList toys={toys} onRemovetoy={onRemovetoy} onEdittoy={onEdittoy} />
+            <ToyList toys={toys} onRemovetoy={onRemovetoy} onEdittoy={onEdittoy} />
         </section>
     )
 }
