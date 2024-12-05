@@ -37,7 +37,7 @@ function query(filterBy = {}) {
       let filteredtoys = toys
       if (filterBy.txt) {
         const regExp = new RegExp(filterBy.txt, 'i')
-        filteredtoys = filteredtoys.filter((toy) => regExp.test(toy.title))
+        filteredtoys = filteredtoys.filter((toy) => regExp.test(toy.name))
       }
       if (filterBy.minprice) {
         filteredtoys = filteredtoys.filter((toy) => toy.price >= filterBy.minprice)

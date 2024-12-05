@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 export function ToyIndex() {
   const [toys, settoys] = useState(null)
   const [filterBy, setFilterBy] = useState(toyService.getDefaultFilter())
-  const [sortBy, setSortBy] = useState('title')
+  const [sortBy, setSortBy] = useState('name')
   const [pageIdx, setPageIdx] = useState(0)
   const pageSize = 5
 
@@ -43,7 +43,7 @@ export function ToyIndex() {
 
   function onAddtoy() {
     const toy = {
-      title: prompt('toy title?'),
+      name: prompt('toy name?'),
       price: +prompt('toy price?'),
     }
     toyService
@@ -112,7 +112,7 @@ export function ToyIndex() {
         <label>
           Sort by:
           <select value={sortBy} onChange={onSortChange}>
-            <option value="title">Title</option>
+            <option value="name">Name</option>
             <option value="price">Price</option>
             <option value="createdAt">Created At</option>
           </select>

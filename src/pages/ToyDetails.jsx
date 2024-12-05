@@ -25,15 +25,14 @@ export function ToyDetails() {
   return (
     toy && (
       <div>
-        <h3>toy Details 🤖</h3>
-        <h4>{toy.title}</h4>
+        <h3 style={{ textAlign: 'center' }}>Toy Details</h3>
+        <h2>🤖</h2>
         <p>
-          Price: <span>{toy.price}</span>
+          Name Toy: <span>{toy.name}</span>
         </p>
         <p>
-          description: <span>{toy.description}</span>
+          Price: <span>{toy.price}$</span>
         </p>
-
         <Link to="/toy">Back to List</Link>
       </div>
     )

@@ -109,10 +109,6 @@ nav a:hover {
   color: lightskyblue;
 }
 
-.toy-preview span {
-  color: red;
-}
-
 .toy-preview button {
   padding: 5px 10px;
   font-size: 0.9rem;
