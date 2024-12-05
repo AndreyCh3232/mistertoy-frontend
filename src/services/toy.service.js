@@ -1,13 +1,31 @@
 import { httpService } from './http.service.js'
 
+const availableLabels = [
+  'On wheels',
+  'Box game',
+  'Art',
+  'Baby',
+  'Doll',
+  'Puzzle',
+  'Outdoor',
+  'Battery Powered',
+  'Building Blocks',
+  'Creative',
+  'Kids',
+  'Vehicle',
+  'Educational'
+]
+
 export const toyService = {
   query,
   save,
   remove,
   save,
   getById,
+  getEmptyToy,
   getDefaultFilter,
-  downloadPdf
+  downloadPdf,
+  labels: availableLabels
 }
 
 const BASE_URL = 'toy/'
@@ -36,6 +54,16 @@ function getById(toyId) {
       throw err
     })
 }
+
+function getEmptyToy() {
+  return {
+    name: '',
+    price: '',
+    inStock: null,
+    labels: []
+  }
+}
+
 
 function remove(toyId) {
   return httpService

@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background-color: lightskyblue;
+  background-color: rgb(230, 82, 13);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,7 @@ main {
 }
 
 footer {
-  background-color: lightskyblue;
+  background-color: rgb(230, 82, 13);
   padding: 5px;
   margin: 10px 0 0;
   text-align: center;
