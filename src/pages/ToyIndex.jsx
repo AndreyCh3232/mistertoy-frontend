@@ -113,7 +113,7 @@ export function ToyIndex() {
           Sort by:
           <select value={sortBy} onChange={onSortChange}>
             <option value="title">Title</option>
-            <option value="severity">Severity</option>
+            <option value="price">Price</option>
             <option value="createdAt">Created At</option>
           </select>
         </label>
