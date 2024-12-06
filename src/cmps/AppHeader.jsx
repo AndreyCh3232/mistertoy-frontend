@@ -30,6 +30,7 @@ export function AppHeader() {
                             {user && <NavLink to="/user">Profile</NavLink>}
                             {user && user.isAdmin && <NavLink to="/admin">Admin</NavLink>}
                             <NavLink to="/map">Google Maps</NavLink>
+                            <NavLink to="/form">Formik</NavLink>
                             <NavLink to="/about">About</NavLink>
                         </nav>
                         <div>
