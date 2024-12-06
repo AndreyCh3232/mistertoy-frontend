@@ -6,6 +6,7 @@ import { ToyIndex } from './pages/toyIndex.jsx'
 import { ToyDetails } from './pages/toyDetails.jsx'
 import { GoogleMap } from './cmps/GoogleMap.jsx'
 import { MyForm } from './cmps/MyForm.jsx'
+import { MaterialUi } from './cmps/MaterialUi.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
 import { AdminDashboard } from './pages/AdminDashboard.jsx'
@@ -23,6 +24,7 @@ export function App() {
                         <Route path="/toy/:toyId" element={<ToyDetails />} />
                         <Route path="/map" element={<GoogleMap />} />
                         <Route path="/form" element={<MyForm />} />
+                        <Route path="/mui" element={<MaterialUi/>} />
                         <Route path="/about" element={<AboutUs />} />
                         <Route path="/user" element={<UserProfile />} />
                         <Route path="/admin" element={<AdminDashboard />} />
