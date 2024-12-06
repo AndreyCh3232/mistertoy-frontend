@@ -3,8 +3,6 @@ import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div style={{ fontSize: '50px' }}>{text}</div>
 
-
-
 export function GoogleMap() {
 
     const [coordinates, setCoordinates] = useState({ lat: 32.0853, lng: 34.7818 })
@@ -29,7 +27,4 @@ export function GoogleMap() {
             </GoogleMapReact>
         </div>
     )
-
-
-
 }

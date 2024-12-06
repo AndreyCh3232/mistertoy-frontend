@@ -36,7 +36,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
       <form className="toy-filter" onSubmit={onSubmit}>
         <input onChange={handleChange} name="txt" id="txt" value={filterBy.txt || ''} type="text" placeholder="Search toys..." />
         <label htmlFor="minprice">By price</label>
-        <input onChange={handleChange} name="minprice" value={filterBy.minprice || 0} type="range" min="0" max="10" id="minprice" />
+        <input onChange={handleChange} name="minprice" value={filterBy.minprice || 0} type="range" min="0" max="100" id="minprice" />
         <label htmlFor="minprice">{filterBy.minprice}</label>
       </form>
     </fieldset>

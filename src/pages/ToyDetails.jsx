@@ -31,7 +31,7 @@ export function ToyDetails() {
           Name Toy: <span>{toy.name}</span>
         </p>
         <p>
-          Price: <span>{toy.price}$</span>
+          Price: <span style={{ color: 'red' }}>{toy.price}$</span>
         </p>
         <Link to="/toy">Back to List</Link>
       </div>
