@@ -1,11 +1,9 @@
-// const { useState, useRef, useEffect } = React
-// const { useNavigate } = ReactRouterDOM
 
 import { ToyList } from '../cmps/ToyList.jsx'
 import { toyService } from '../services/toy.service.js'
 import { userService } from '../services/user.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export function UserProfile() {
@@ -21,46 +19,40 @@ export function UserProfile() {
         loadUsertoys()
     }, [user])
 
-    function loadUsertoys() {
-        toyService.query({ userId: user._id }).then(res => {
-            console.log('res:', res)
-
+    async function loadUsertoys() {
+        try {
+            const res = await toyService.query({ userId: user._id })
             setToys(res.toys)
-        })
+        } catch (err) {
+            console.error('Error loading user toys:', err)
+            showErrorMsg('Cannot load user toys')
+        }
     }
 
-    function onRemovetoy(toyId) {
-        toyService
-            .remove(toyId)
-            .then(() => {
-                console.log('Deleted Succesfully!')
-                setToys(prevtoys => prevtoys.filter(toy => toy._id !== toyId))
-                showSuccessMsg('toy removed')
-            })
-            .catch(err => {
-                console.log('from remove toy', err)
-                showErrorMsg('Cannot remove toy')
-            })
+    async function onRemovetoy(toyId) {
+        try {
+            await toyService.remove(toyId)
+            setToys((prevToys) => prevToys.filter((toy) => toy._id !== toyId))
+            showSuccessMsg('Toy removed successfully')
+        } catch (err) {
+            console.error('Error removing toy:', err)
+            showErrorMsg('Cannot remove toy')
+        }
     }
 
-    function onEditToy(toy) {
-        const price = +prompt('New price?')
-        const toyToSave = { ...toy, price }
-        toyService
-            .save(toyToSave)
-            .then(savedtoy => {
-                console.log('Updated toy:', savedtoy)
-                setToys(prevtoys =>
-                    prevtoys.map(currtoy =>
-                        currtoy._id === savedtoy._id ? savedtoy : currtoy
-                    )
-                )
-                showSuccessMsg('toy updated')
-            })
-            .catch(err => {
-                console.log('from edit toy', err)
-                showErrorMsg('Cannot update toy')
-            })
+    async function onEditToy(toy) {
+        try {
+            const price = +prompt('New price?', toy.price)
+            const toyToSave = { ...toy, price }
+            const savedToy = await toyService.save(toyToSave)
+            setToys((prevToys) =>
+                prevToys.map((currToy) => (currToy._id === savedToy._id ? savedToy : currToy))
+            )
+            showSuccessMsg('Toy updated successfully')
+        } catch (err) {
+            console.error('Error updating toy:', err)
+            showErrorMsg('Cannot update toy')
+        }
     }
 
     if (!user) return null

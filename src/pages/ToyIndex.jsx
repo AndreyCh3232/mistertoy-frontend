@@ -42,7 +42,7 @@ export function ToyIndex() {
       const toy = {
         name: prompt('Toy name?'),
         price: +prompt('Toy price?'),
-      };
+      }
       const savedToy = await toyService.save(toy)
       setToys((prevToys) => [...prevToys, savedToy])
       showSuccessMsg('Toy added successfully')
@@ -69,11 +69,11 @@ export function ToyIndex() {
 
   async function onDownloadPdf() {
     try {
-      await toyService.downloadPdf();
-      showSuccessMsg('PDF downloaded');
+      await toyService.downloadPdf()
+      showSuccessMsg('PDF downloaded')
     } catch (err) {
-      console.error('Error downloading PDF:', err);
-      showErrorMsg('Failed to generate PDF');
+      console.error('Error downloading PDF:', err)
+      showErrorMsg('Failed to generate PDF')
     }
   }
 

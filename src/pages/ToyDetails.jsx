@@ -5,7 +5,7 @@ import { showErrorMsg } from '../services/event-bus.service.js'
 import { Link, useParams } from 'react-router-dom'
 
 export function ToyDetails() {
-  const [toy, settoy] = useState(null)
+  const [toy, setToy] = useState(null)
   const { toyId } = useParams()
 
   useEffect(() => {
