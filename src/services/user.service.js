@@ -12,36 +12,50 @@ export const userService = {
     getEmptyCredentials
 }
 
-function login({ username, password }) {
-    return httpService.post(`${BASE_URL}login`, { username, password })
-        .then(user => {
-            _setLoggedinUser(user)
-            return user
-        })
+async function login({ username, password }) {
+    try {
+        const user = await httpService.post(`${BASE_URL}login`, { username, password })
+        _setLoggedinUser(user)
+        return user
+    } catch (err) {
+        console.error('Error logging in:', err)
+        throw err
+    }
 }
 
 
-function signup({ username, password, fullname }) {
-    return httpService.post(`${BASE_URL}signup`, { username, password, fullname })
-        .then(user => {
-            _setLoggedinUser(user)
-            return user
-        })
+async function signup({ username, password, fullname }) {
+    try {
+        const user = await httpService.post(`${BASE_URL}signup`, { username, password, fullname })
+        _setLoggedinUser(user)
+        return user
+    } catch (err) {
+        console.error('Error signing up:', err)
+        throw err
+    }
 }
 
-function logout() {
-    return httpService.post(`${BASE_URL}logout`)
-        .then(() => {
-            sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-        })
+async function logout() {
+    try {
+        await httpService.post(`${BASE_URL}logout`)
+        sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+    } catch (err) {
+        console.error('Error logging out:', err)
+        throw err
+    }
 }
 
 function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
-function getById(userId) {
-    return httpService.get(`${BASE_URL}${userId}`)
+async function getById(userId) {
+    try {
+        return await httpService.get(`${BASE_URL}${userId}`)
+    } catch (err) {
+        console.error(`Error getting user with ID ${userId}:`, err)
+        throw err
+    }
 }
 
 function getEmptyCredentials() {
