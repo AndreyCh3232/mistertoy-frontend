@@ -30,29 +30,34 @@ export const toyService = {
 
 const BASE_URL = 'toy/'
 
-function query(filterBy = {}) {
-  return httpService
-    .get(BASE_URL)
-    .then((toys) => {
-      let filteredtoys = toys
-      if (filterBy.txt) {
-        const regExp = new RegExp(filterBy.txt, 'i')
-        filteredtoys = filteredtoys.filter((toy) => regExp.test(toy.name))
-      }
-      if (filterBy.minprice) {
-        filteredtoys = filteredtoys.filter((toy) => toy.price >= filterBy.minprice)
-      }
-      return filteredtoys
-    })
+async function query(filterBy = {}) {
+  try {
+    const toys = await httpService.get(BASE_URL)
+    let filteredToys = toys
+
+    if (filterBy.txt) {
+      const regExp = new RegExp(filterBy.txt, 'i')
+      filteredToys = filteredToys.filter((toy) => regExp.test(toy.name))
+    }
+
+    if (filterBy.minprice) {
+      filteredToys = filteredToys.filter((toy) => toy.price >= filterBy.minprice)
+    }
+
+    return filteredToys
+  } catch (err) {
+    console.error('Error querying toys:', err)
+    throw err
+  }
 }
 
-function getById(toyId) {
-  return httpService
-    .get(`${BASE_URL}${toyId}`)
-    .catch((err) => {
-      console.error(`Error getting toy with ID ${toyId}:`, err)
-      throw err
-    })
+async function getById(toyId) {
+  try {
+    return await httpService.get(`${BASE_URL}${toyId}`)
+  } catch (err) {
+    console.error(`Error getting toy with ID ${toyId}:`, err)
+    throw err
+  }
 }
 
 function getEmptyToy() {
@@ -65,30 +70,25 @@ function getEmptyToy() {
 }
 
 
-function remove(toyId) {
-  return httpService
-    .delete(`${BASE_URL}${toyId}`)
-    .catch((err) => {
-      console.error(`Error removing toy with ID ${toyId}:`, err)
-      throw err
-    })
+async function remove(toyId) {
+  try {
+    return await httpService.delete(`${BASE_URL}${toyId}`)
+  } catch (err) {
+    console.error(`Error removing toy with ID ${toyId}:`, err)
+    throw err
+  }
 }
 
-function save(toy) {
-  if (toy._id) {
-    return httpService
-      .put(`${BASE_URL}${toy._id}`, toy)
-      .catch((err) => {
-        console.error('Error updating toy:', err)
-        throw err;
-      })
-  } else {
-    return httpService
-      .post(BASE_URL, toy)
-      .catch((err) => {
-        console.error('Error adding new toy:', err)
-        throw err
-      })
+async function save(toy) {
+  try {
+    if (toy._id) {
+      return await httpService.put(`${BASE_URL}${toy._id}`, toy)
+    } else {
+      return await httpService.post(BASE_URL, toy)
+    }
+  } catch (err) {
+    console.error('Error saving toy:', err)
+    throw err
   }
 }
 
@@ -96,25 +96,26 @@ function getDefaultFilter() {
   return { txt: '', minprice: 0 }
 }
 
-function downloadPdf() {
-  httpService({
-    url: '/api/toy/pdf',
-    method: 'GET',
-    responseType: 'blob'
-  })
-    .then((response) => {
-      const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }))
-
-      const link = document.createElement('a')
-      link.href = url
-      link.setAttribute('download', 'toys.pdf')
-      document.body.appendChild(link)
-      link.click()
-
-      link.remove()
-      window.URL.revokeObjectURL(url)
+async function downloadPdf() {
+  try {
+    const response = await httpService({
+      url: '/api/toy/pdf',
+      method: 'GET',
+      responseType: 'blob'
     })
-    .catch((error) => {
-      console.error('Error downloading PDF:', error)
-    })
+
+    const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }))
+
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', 'toys.pdf')
+    document.body.appendChild(link)
+    link.click()
+
+    link.remove()
+    window.URL.revokeObjectURL(url)
+  } catch (err) {
+    console.error('Error downloading PDF:', err)
+    throw err
+  }
 }

@@ -34,7 +34,7 @@ export function MyForm() {
                 initialValues={defaultValues}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
-                    console.log('values', values);
+                    console.log('values', values)
                 }}
             >
                 {({ errors, touched }) => (
