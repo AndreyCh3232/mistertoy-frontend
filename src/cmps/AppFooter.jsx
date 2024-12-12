@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { showSuccessMsg } from '../services/event-bus.service.js'
-// const { useEffect } = React
 
 export function AppFooter() {
 

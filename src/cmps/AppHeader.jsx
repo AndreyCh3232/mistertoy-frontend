@@ -10,13 +10,14 @@ export function AppHeader() {
     const [user, setUser] = useState(userService.getLoggedinUser())
     const navigate = useNavigate()
 
-    function handleLogout() {
-        userService.logout().then(() => {
+    async function handleLogout() {
+        try {
+            await userService.logout()
             setUser(null)
             navigate('/')
-        }).catch((err) => {
+        } catch (err) {
             console.error('Error during logout:', err)
-        })
+        }
     }
 
     return (
