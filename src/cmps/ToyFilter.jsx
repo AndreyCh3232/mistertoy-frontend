@@ -1,4 +1,3 @@
-// const { useEffect, useState } = React
 
 import { useEffect, useState } from "react"
 
@@ -6,8 +5,11 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
   useEffect(() => {
-    onSetFilterBy(filterByToEdit)
-  }, [filterByToEdit])
+    const updateFilter = async () => {
+      await onSetFilterBy(filterByToEdit)
+    }
+    updateFilter()
+  }, [filterByToEdit, onSetFilterBy])
 
   function handleChange({ target }) {
     const field = target.name
@@ -25,7 +27,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
     }
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
-  function onSubmit(ev) {
+  async function onSubmit(ev) {
     ev.preventDefault()
     console.log('Form submitted')
   }
@@ -34,9 +36,24 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
     <fieldset>
       <legend>Filter</legend>
       <form className="toy-filter" onSubmit={onSubmit}>
-        <input onChange={handleChange} name="txt" id="txt" value={filterBy.txt || ''} type="text" placeholder="Search toys..." />
+        <input
+          onChange={handleChange}
+          name="txt"
+          id="txt"
+          value={filterBy.txt || ''}
+          type="text"
+          placeholder="Search toys..."
+        />
         <label htmlFor="minprice">By price</label>
-        <input onChange={handleChange} name="minprice" value={filterBy.minprice || 0} type="range" min="0" max="100" id="minprice" />
+        <input
+          onChange={handleChange}
+          name="minprice"
+          value={filterBy.minprice || 0}
+          type="range"
+          min="0"
+          max="100"
+          id="minprice"
+        />
         <label htmlFor="minprice">{filterBy.minprice}</label>
       </form>
     </fieldset>
