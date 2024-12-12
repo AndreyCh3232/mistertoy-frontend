@@ -3,7 +3,7 @@
 import { Link } from 'react-router-dom'
 import { ToyPreview } from './ToyPreview.jsx'
 
-export function ToyList({ toys, onRemovetoy, onEdittoy }) {
+export function ToyList({ toys, onRemovetoy, onEditToy }) {
 
     if (!toys) return <div>Loading...</div>
 
@@ -16,7 +16,7 @@ export function ToyList({ toys, onRemovetoy, onEdittoy }) {
                     <ToyPreview toy={toy} />
                     <div>
                         <button onClick={() => onRemovetoy(toy._id)}>Delete</button>
-                        <button onClick={() => onEdittoy(toy)}>Edit</button>
+                        <button onClick={() => onEditToy(toy)}>Edit</button>
                     </div>
                     <Link to={`/toy/${toy._id}`}>Details</Link>
                 </li>

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 export function UserProfile() {
     const [user, setUser] = useState(userService.getLoggedinUser())
-    const [toys, settoys] = useState([])
+    const [toys, setToys] = useState([])
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export function UserProfile() {
         toyService.query({ userId: user._id }).then(res => {
             console.log('res:', res)
 
-            settoys(res.toys)
+            setToys(res.toys)
         })
     }
 
@@ -34,7 +34,7 @@ export function UserProfile() {
             .remove(toyId)
             .then(() => {
                 console.log('Deleted Succesfully!')
-                settoys(prevtoys => prevtoys.filter(toy => toy._id !== toyId))
+                setToys(prevtoys => prevtoys.filter(toy => toy._id !== toyId))
                 showSuccessMsg('toy removed')
             })
             .catch(err => {
@@ -43,14 +43,14 @@ export function UserProfile() {
             })
     }
 
-    function onEdittoy(toy) {
+    function onEditToy(toy) {
         const price = +prompt('New price?')
         const toyToSave = { ...toy, price }
         toyService
             .save(toyToSave)
             .then(savedtoy => {
                 console.log('Updated toy:', savedtoy)
-                settoys(prevtoys =>
+                setToys(prevtoys =>
                     prevtoys.map(currtoy =>
                         currtoy._id === savedtoy._id ? savedtoy : currtoy
                     )
@@ -70,7 +70,7 @@ export function UserProfile() {
 
             {!toys || (!toys.length && <h2>No toys to show</h2>)}
             {toys && toys.length > 0 && <h3>Manage your toys</h3>}
-            <ToyList toys={toys} onRemovetoy={onRemovetoy} onEdittoy={onEdittoy} />
+            <ToyList toys={toys} onRemovetoy={onRemovetoy} onEditToy={onEditToy} />
         </section>
     )
 }
