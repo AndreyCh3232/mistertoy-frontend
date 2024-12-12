@@ -1,4 +1,3 @@
-// const { useState, useEffect } = React
 import { userService } from '../services/user.service.js'
 import { UserList } from '../cmps/UserList.jsx'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
@@ -9,21 +8,29 @@ export function AdminDashboard() {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        userService.query().then(setUsers)
+        const fetchUsers = async () => {
+            try {
+                const fetchedUsers = await userService.query()
+                setUsers(fetchedUsers);
+            } catch (err) {
+                console.error('Error fetching users:', err)
+                showErrorMsg('Failed to load users')
+            }
+        }
+
+        fetchUsers()
     }, [])
 
-    function onRemoveUser(userId) {
-        userService
-            .remove(userId)
-            .then(() => {
-                const usersToUpdate = users.filter(u => u._id !== userId)
-                setUsers(usersToUpdate)
-                showSuccessMsg('Removed successfully')
-            })
-            .catch(err => {
-                console.log('err', err)
-                showErrorMsg('Had issues removing the user')
-            })
+    async function onRemoveUser(userId) {
+        try {
+            await userService.remove(userId)
+            const usersToUpdate = users.filter(u => u._id !== userId)
+            setUsers(usersToUpdate)
+            showSuccessMsg('Removed successfully')
+        } catch (err) {
+            console.error('Error removing user:', err)
+            showErrorMsg('Had issues removing the user')
+        }
     }
 
     if (!user || !user.isAdmin) return <div>You are not allowed in this page</div>
