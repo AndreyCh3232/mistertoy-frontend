@@ -12,35 +12,36 @@ export function LoginSignup({ setUser }) {
         setCredentials(prevCredentials => ({ ...prevCredentials, [name]: value }))
     }
 
-    function onSubmit(event) {
+    async function onSubmit(event) {
         event.preventDefault()
-        isSignup ? signup(credentials) : login(credentials)
+        if (isSignup) {
+            await signup(credentials)
+        } else {
+            await login(credentials)
+        }
     }
 
-    function login(credentials) {
-        userService.login(credentials)
-            .then(user => {
-                setUser(user)
-                showSuccessMsg('Logged in successfully')
-            })
-            .catch(err => {
-                console.error('Login error:', err)
-                showErrorMsg('Oops, try again')
-            })
+    async function login(credentials) {
+        try {
+            const user = await userService.login(credentials)
+            setUser(user)
+            showSuccessMsg('Logged in successfully')
+        } catch (err) {
+            console.error('Login error:', err)
+            showErrorMsg('Oops, try again')
+        }
     }
 
-    function signup(credentials) {
-        userService.signup(credentials)
-            .then(user => {
-                setUser(user);
-                showSuccessMsg('Signed up successfully')
-            })
-            .catch(err => {
-                console.error('Signup error:', err)
-                showErrorMsg('Oops, try again')
-            })
+    async function signup(credentials) {
+        try {
+            const user = await userService.signup(credentials)
+            setUser(user)
+            showSuccessMsg('Signed up successfully')
+        } catch (err) {
+            console.error('Signup error:', err)
+            showErrorMsg('Oops, try again')
+        }
     }
-
 
     return (
         <div className="auth-container">
