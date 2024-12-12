@@ -1,5 +1,3 @@
-// const { useState, useEffect } = React
-// const { Link, useParams } = ReactRouterDOM
 
 import { useEffect, useState } from 'react'
 import { toyService } from '../services/toy.service.js'
@@ -11,15 +9,18 @@ export function ToyDetails() {
   const { toyId } = useParams()
 
   useEffect(() => {
-    toyService
-      .getById(toyId)
-      .then((toy) => {
-        settoy(toy)
-      })
-      .catch((err) => {
+    const fetchToy = async () => {
+      try {
+        const fetchedToy = await toyService.getById(toyId)
+        setToy(fetchedToy)
+      } catch (err) {
+        console.error('Error fetching toy:', err)
         showErrorMsg('Cannot load toy')
-      })
-  }, [])
+      }
+    }
+
+    fetchToy()
+  }, [toyId])
 
   if (!toy) return <h1>loadings....</h1>
   return (
