@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { eventBusService } from "../services/event-bus.service.js"
 
-// const { useState, useEffect, useRef } = React
-
 export function UserMsg() {
 
   const [msg, setMsg] = useState(null)
@@ -21,7 +19,7 @@ export function UserMsg() {
     return unsubscribe
   }, [])
 
-  function closeMsg() {
+  async function closeMsg() {
     setMsg(null)
   }
 
