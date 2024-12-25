@@ -1,0 +1,12 @@
+header {
+    background-color: $primary-color;
+    padding: rem(10);
+    width: 100%;
+    @include flex-center(column);
+
+    .main-title {
+        text-align: center;
+        color: rgba(36, 7, 7, 0.685);
+        font-family: $font-family;
+    }
+}

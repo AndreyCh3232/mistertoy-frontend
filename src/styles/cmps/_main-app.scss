@@ -1,0 +1,55 @@
+.main-app {
+    @include flex-center(column);
+    min-height: 100vh;
+
+    main {
+        font-family: $font-family;
+        margin: rem(20);
+        padding: rem(20);
+        background-color: $light-grey;
+        border-radius: rem(8);
+        @include box-shadow();
+
+        .info-actions {
+            display: flex;
+            flex-direction: column;
+            gap: rem(15);
+            margin-bottom: rem(20);
+
+            h3 {
+                font-size: rem(28);
+                color: $text-color;
+            }
+        }
+    }
+}
+
+info-actions {
+    label {
+        display: inline-block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    select,
+    button {
+        margin-top: 5px;
+        padding: 8px 12px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        background-color: #fff;
+        @include transition(background-color, color);
+
+        &:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+}

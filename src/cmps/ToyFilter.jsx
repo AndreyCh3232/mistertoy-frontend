@@ -5,11 +5,8 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
   useEffect(() => {
-    const updateFilter = async () => {
-      await onSetFilterBy(filterByToEdit)
-    }
-    updateFilter()
-  }, [filterByToEdit, onSetFilterBy])
+    onSetFilterBy(filterByToEdit)
+  }, [filterByToEdit])
 
   function handleChange({ target }) {
     const field = target.name

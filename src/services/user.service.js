@@ -23,7 +23,6 @@ async function login({ username, password }) {
     }
 }
 
-
 async function signup({ username, password, fullname }) {
     try {
         const user = await httpService.post(`${BASE_URL}signup`, { username, password, fullname })

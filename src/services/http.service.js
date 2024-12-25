@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 var axios = Axios.create({
-    withCredentials: true
+    withCredentials: true,
 })
 
 console.log('process.env.NODE_ENV:', process.env.NODE_ENV)
@@ -36,7 +36,6 @@ function ajax(endpoint, method = 'GET', data = null) {
     return axios(options)
         .then(res => res.data)
         .catch(err => {
-
             console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: `, data)
             console.dir(err)
 

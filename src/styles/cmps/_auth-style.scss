@@ -1,0 +1,13 @@
+.auth-container {
+    input {
+        margin: 10px 5px;
+    }
+
+    h2 {
+        @include flex-center();
+    }
+
+    .button-container {
+        @include flex-center();
+    }
+}

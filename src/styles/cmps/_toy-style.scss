@@ -1,0 +1,145 @@
+.toy-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toy-preview {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.05));
+    @include transition();
+
+    &:hover {
+        @include box-shadow(0 3px 15px rgba(0, 0, 0, 0.1));
+    }
+
+    div {
+        display: flex;
+        gap: 5px;
+        margin: 10px 0;
+        align-items: center;
+    }
+
+    a {
+        color: $link-hover;
+    }
+
+    button {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        color: $text-color;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #f2f2f2;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+    }
+}
+
+.container {
+    padding-inline: 8rem;
+    width: 100%;
+}
+
+.toy-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: $light-grey;
+    padding: 20px;
+    border-radius: 8px;
+    @include box-shadow();
+    max-width: 400px;
+    margin: 0 auto;
+
+    fieldset {
+        border: 2px solid $primary-color;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 20px;
+
+        legend {
+            font-weight: bold;
+            color: $primary-color;
+            font-size: rem(20);
+        }
+    }
+
+    input[type="text"],
+    input[type="range"] {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    label {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #555;
+
+        &+input[type="range"] {
+            display: block;
+            font-weight: normal;
+            color: $primary-color;
+            font-size: 1rem;
+            text-align: center;
+        }
+    }
+
+    input[type="submit"] {
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        @include transition();
+
+        &:hover {
+            background-color: darken($primary-color, 5%);
+        }
+    }
+}
+
+.pagination {
+    @include flex-center(row);
+    gap: 10px;
+    margin-top: 20px;
+
+    button {
+        padding: 8px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        @include transition();
+
+        &:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+            background-color: darken(#007bff, 10%);
+        }
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+    }
+}

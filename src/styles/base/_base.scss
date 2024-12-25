@@ -1,0 +1,21 @@
+body {
+    margin: auto;
+    font-size: rem(20);
+}
+
+nav {
+    a {
+        color: black;
+        display: inline-block;
+        margin: 3px;
+        padding: 10px;
+        border-bottom: 1px solid transparent;
+        text-decoration: none;
+
+        &:hover {
+            border-bottom: 1px solid whitesmoke;
+            text-decoration: overline;
+            color: whitesmoke;
+        }
+    }
+}

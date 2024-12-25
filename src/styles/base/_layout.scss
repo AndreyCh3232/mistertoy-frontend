@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+    .main-app {
+        padding: rem(10);
+    }
+
+    header {
+        .main-title {
+            font-size: rem(24);
+        }
+    }
+
+    main {
+        margin: rem(10);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: rem(5);
+    }
+
+    main {
+        padding: rem(10);
+    }
+}
