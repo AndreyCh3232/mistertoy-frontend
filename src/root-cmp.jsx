@@ -3,6 +3,7 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { Home } from './pages/Home.jsx'
 import { ToyIndex } from './pages/toyIndex.jsx'
+import { ReviewIndex } from './pages/ReviewIndex'
 import { ToyDetails } from './pages/toyDetails.jsx'
 import { GoogleMap } from './cmps/GoogleMap.jsx'
 import { MyForm } from './cmps/MyForm.jsx'
@@ -27,6 +28,7 @@ export function App() {
                         <Route path="/form" element={<MyForm />} />
                         <Route path="/chart" element={<MyChart />} />
                         <Route path="/mui" element={<MaterialUi />} />
+                        <Route path="/review" element={<ReviewIndex />} />
                         <Route path="/about" element={<AboutUs />} />
                         <Route path="/user" element={<UserProfile />} />
                         <Route path="/admin" element={<AdminDashboard />} />

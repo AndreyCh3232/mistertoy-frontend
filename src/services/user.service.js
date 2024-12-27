@@ -13,6 +13,7 @@ export const userService = {
 }
 
 async function login({ username, password }) {
+    console.log(username, password)
     try {
         const user = await httpService.post(`${BASE_URL}login`, { username, password })
         _setLoggedinUser(user)

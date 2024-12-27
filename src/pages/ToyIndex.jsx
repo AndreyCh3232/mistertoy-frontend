@@ -93,6 +93,8 @@ export function ToyIndex() {
     setPageIdx((prevPageIdx) => Math.max(prevPageIdx - 1, 0))
   }
 
+
+  if (!toys) return <h1>loading..</h1>
   return (
     <main>
       <section className="info-actions">
