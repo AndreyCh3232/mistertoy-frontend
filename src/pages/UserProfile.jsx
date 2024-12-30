@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export function UserProfile() {
-    const [user, setUser] = useState(userService.getLoggedinUser())
+    const [user, setUser] = useState(userService.getLoggedInUser())
     const [toys, setToys] = useState([])
     const navigate = useNavigate()
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ToyPreview } from './ToyPreview.jsx'
 
 export function ToyList({ toys, onRemovetoy, onEditToy }) {
-console.log(toys);
+    console.log(toys)
 
     if (!toys) return <div>Loading...</div>
 

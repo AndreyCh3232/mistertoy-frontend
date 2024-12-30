@@ -4,7 +4,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { useEffect, useState } from 'react'
 
 export function AdminDashboard() {
-    const user = userService.getLoggedinUser()
+    const user = userService.getLoggedInUser()
     const [users, setUsers] = useState([])
 
     useEffect(() => {

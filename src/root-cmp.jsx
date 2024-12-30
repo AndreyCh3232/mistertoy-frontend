@@ -1,3 +1,5 @@
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
@@ -13,7 +15,6 @@ import { AboutUs } from './pages/AboutUs.jsx'
 import { UserProfile } from './pages/UserProfile.jsx'
 import { store } from './store/store'
 import { AdminDashboard } from './pages/AdminDashboard.jsx'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 export function App() {
     return (

@@ -25,6 +25,8 @@ export function ReviewEdit({ toys }) {
         }
     }
 
+    if (!toys) return <div>Loading...</div>
+
     return (
         <form className="review-edit" onSubmit={onAddReview}>
             <select

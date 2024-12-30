@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 export function AppHeader() {
-    const [user, setUser] = useState(userService.getLoggedinUser())
+    const [user, setUser] = useState(userService.getLoggedInUser())
     const navigate = useNavigate()
 
     async function handleLogout() {
@@ -34,6 +34,7 @@ export function AppHeader() {
                             <NavLink to="/form">Formik</NavLink>
                             <NavLink to="/chart">Chart.js</NavLink>
                             <NavLink to="/mui">Material UI</NavLink>
+                            <NavLink to="/review">Reveiws</NavLink>
                             <NavLink to="/about">About</NavLink>
                         </nav>
                         <div>

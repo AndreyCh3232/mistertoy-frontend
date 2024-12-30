@@ -7,13 +7,12 @@ export const userService = {
     login,
     signup,
     logout,
-    getLoggedinUser,
+    getLoggedInUser,
     getById,
     getEmptyCredentials
 }
 
 async function login({ username, password }) {
-    console.log(username, password)
     try {
         const user = await httpService.post(`${BASE_URL}login`, { username, password })
         _setLoggedinUser(user)
@@ -45,7 +44,7 @@ async function logout() {
     }
 }
 
-function getLoggedinUser() {
+function getLoggedInUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
